@@ -1,9 +1,9 @@
 # FileLauncher
-C++ Windows console application for launching files.
+C++ Windows console application for launching files. It was created mainly for my C# WinForms application called MiXTools to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant button's key press action to something useful for newer generation of Xiaomi laptops.
 
 ## Features
-  FileLauncher can open any file or open file in it's extension associated editor.
-  It has Unicode support for Unicode paths. Windows Drag-and-Drop works on the executable (because it a single argument for a path and performs an open launch mode).
+FileLauncher can open any file or open file in it's extension associated editor.
+It has Unicode support for Unicode paths. Windows Drag-and-Drop works on the executable (because it a single argument for a path and performs an open launch mode).
 
 ## Arguments
 
@@ -38,8 +38,8 @@ FileLauncher can be used with command line arguments or **fl** (without an exten
   - `fl p` (only works if it the path doesn't contain any space characters)
 
 ### Config file
-  Reads the first two lines of **fl** (config file).<br/>
-  If the file has only one line the launch mode defaults to **open**.
+Reads the first two lines of **fl** (config file).<br/>
+If the file has only one line the launch mode defaults to **open**.
   
 ## Compile
 
@@ -49,4 +49,4 @@ FileLauncher can be used with command line arguments or **fl** (without an exten
   The flag mwindows is used for disabling console and municode is needed for Unicode (wWinMain) support.
   
 ## Log file
-The app should log to a file called **fl_error.txt** if case of an error (ex: invalid arguments, file doesn't exist, ...).
+The app should log to a file called **fl_error.txt** in case of an error (ex: invalid arguments, file doesn't exist, ...).
