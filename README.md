@@ -40,6 +40,7 @@ FileLauncher can be used with command line arguments or **fl** (without an exten
 ### Config file
 Reads the first two lines of **fl** (config file).<br/>
 If the file has only one line the launch mode defaults to **open**.
+Run the executable to launch the specified file.
   
 ## Compile
 
