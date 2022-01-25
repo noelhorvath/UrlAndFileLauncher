@@ -1,5 +1,5 @@
 # FileLauncher
-C++ Windows console application for launching files. It was mainly created for my C# WinForms project called MiXTools to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant button's key press action to something useful for newer generation of Xiaomi laptops.
+C++ Windows application for launching files. It was mainly created for my C# WinForms project called MiXTools to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant button's key press action to something useful for newer generation of Xiaomi laptops.
 
 ## Features
 FileLauncher can open any file or open file in it's extension associated editor.
