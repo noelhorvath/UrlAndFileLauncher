@@ -10,6 +10,9 @@
 #include <filesystem>
 #include <codecvt>
 #include <memory>
+#include <shlobj.h>
+#include <initguid.h>
+#include <knownfolders.h>
 
 using namespace std;
 
@@ -26,10 +29,12 @@ const int NUM_OF_FILE_ARGS = 1; // number of file args used
 const int READ_BUFFER_SIZE = 512; // maybe support for max file char length?
 const wchar_t QMARK = 34; // value of '"'
 const wchar_t SPACE = 32; // value of ' '
-const string CONFIG_FILE = "fl"; // config file
-const string LOG_FILE = "fl_error.txt"; // log file
+const wstring CONFIG_FILE = L"fl"; // config file
+const wstring LOG_FILE = L"fl_error.txt"; // log file
 const int FROM_FILE = 0;
 const int FROM_ARGS = 1;
+const wstring APP_NAME = L"MiXTools";
+const wstring APP_VERSION_CODE = L"1.0.0";
 // error messagees
 const string SYS_OUT_OF_RESOURCES = "System is out of memory or resources!";
 const string FILE_NOT_FOUND = "File was not found!";
@@ -49,7 +54,7 @@ const string INVALID_FILE_LAUNCH_MODE = "Invalid file launch mode!";
 const string FILE_NOT_EXISTS = "File doesn't exist!";
 const string INVALID_ARGS = "Invalid arguments!";
 const string COULD_NOT_OPEN_CONFIG_FILE = "Couldn't open config file!";
-const string NO_CONFIG_FILE_FOUND = "Config file named \"fl\" doesn't exist in the executable's folder";
+const string NO_CONFIG_FILE_FOUND = "Config file doesn't exist";
 const string FILE_LAUNCH_MODE_ARG_ERROR = 
 	"Error: Invalid file launch mode argument!\n"
 	"Available modes:\n"
@@ -67,20 +72,22 @@ const string ARG_ERROR =
 	"	fl path_to_file\n";
 
 // sets the correct access value for each argument
-int order_args(unique_ptr<wstring[]> &args, int &argFile, int &argMode, string logFile);
+int order_args(unique_ptr<wstring[]> &args, int &argFile, int &argMode, wstring logFile);
 // checks wether the given mode is valid
 int is_mode_valid(wstring &mode);
 // executes shellexecute on the file with the given mode
-int open_file(const wchar_t* file, const wchar_t* mode, const wchar_t* params, int showCmd, string logFile);
+int open_file(const wchar_t* file, const wchar_t* mode, const wchar_t* params, int showCmd, wstring logFile);
 // writes errorText to file and also prints it
 // if write is successful returns true else false
-int log_error(string file, string errorText);
+int log_error(wstring file, string errorText);
 // launch file from args or file
 int launch_file(int from, const wchar_t *cmdLine, const int argsLength);
 // returns the length of a wchar_t array
 int wstr_length(wchar_t *str);
 // returns the length of a const wchar_t array
 int wstr_length(const wchar_t *str);
+// get the full path of a file in MiXTools's AppData Roaming folder 
+wstring get_app_data_file_path(wstring fileName);
 
 // win app entry point
 // compile with -mwindows to completely hide terminal
@@ -175,14 +182,11 @@ int launch_file(int from, const wchar_t *cmdLine, const int argsLength) {
 		// run the file
 		return open_file(args[argFile].c_str(), args[argMode].c_str(), NULL, SW_SHOW, LOG_FILE);
 	} else if (from == FROM_FILE) {
-		filesystem::path configFile = filesystem::current_path();
-		configFile += "\\";
-		configFile += CONFIG_FILE;
-		//
-		// check if config file exists
-		//
+		// check if config file
+		wstring configFile = get_app_data_file_path(CONFIG_FILE);
 		if (!filesystem::exists(configFile)) {
-			cout << "Missing: " << configFile << endl;
+			string config_file_path(configFile.begin(), configFile.end());
+			cout << "Missing file: " << config_file_path << endl;
 			return log_error(LOG_FILE, NO_CONFIG_FILE_FOUND) ? 34 : 36;
 		}
 		//
@@ -191,7 +195,7 @@ int launch_file(int from, const wchar_t *cmdLine, const int argsLength) {
 		unique_ptr<wstring[]> args(new wstring[ARGS_COUNT]);
 		int numOfArgs = 0;
 		wifstream wif;
-		wif.open(configFile);
+		wif.open(filesystem::path(configFile));
 		if (wif.is_open()) {
 			// set UTF-8
 			wif.imbue(locale(locale(), new codecvt_utf8<wchar_t>));
@@ -234,11 +238,11 @@ int launch_file(int from, const wchar_t *cmdLine, const int argsLength) {
 	return -1;
 }
 
-int log_error(string file, string errorText) {
+int log_error(wstring file, string errorText) {
 	cout << errorText;
 	if (file.empty()) { return 0; }
 	ofstream of;
-	of.open(file);
+	of.open(filesystem::path(get_app_data_file_path(LOG_FILE)).c_str());
 	if (!of.is_open()) { return 0; }
 	of << errorText << endl;
 	of.close();
@@ -257,7 +261,7 @@ int wstr_length(const wchar_t* str) {
 	return i;
 }
 
-int open_file(const wchar_t *file, const wchar_t *mode, const wchar_t* params, int showCmd, string logFile) {
+int open_file(const wchar_t *file, const wchar_t *mode, const wchar_t* params, int showCmd, wstring logFile) {
 	HINSTANCE result = ShellExecuteW(NULL, mode, file, params, NULL, showCmd);
 	unsigned long long int code = reinterpret_cast<unsigned long long int>(result);
 	// handle errors
@@ -314,7 +318,7 @@ int is_mode_valid(wstring &mode) {
 	return 0;
 }
 
-int order_args(unique_ptr<wstring[]> &args, int &argFile, int &argMode, string logFile) {
+int order_args(unique_ptr<wstring[]> &args, int &argFile, int &argMode, wstring logFile) {
 	if (filesystem::exists(args[0])) {
 		argFile = 0;
 		argMode = 1;
@@ -325,4 +329,13 @@ int order_args(unique_ptr<wstring[]> &args, int &argFile, int &argMode, string l
 		return 1;
 	}
 	return 0;
+}
+
+wstring get_app_data_file_path(wstring fileName) {
+	wchar_t* appDataPath = nullptr;
+	SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, 0, &appDataPath);
+	wstringstream path_ss;
+	path_ss << appDataPath << "\\" << APP_NAME << "\\" << APP_NAME << "\\" << APP_VERSION_CODE << "\\" << fileName;
+	SHFree(static_cast<void*>(appDataPath));
+	return path_ss.str();
 }
