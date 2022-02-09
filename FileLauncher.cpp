@@ -17,10 +17,21 @@ using namespace std;
 *
 * Preffered compile commands:
 *
-*		debug: g++ -Wall -o2 -municode FileLauncher.cpp -o fl
-*		release: g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl
+*		debug:
+* 
+*			windres debug.rc debug_res.o
+*			g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl-debug.exe debug_res.o
+* 
+*		production:
+*			
+*			windres prod.rc prod_res.o
+*			g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl.exe prod_res.o
+*	
+* 
+* or use the .cmd files for compiling.
 *
 */
+
 const int ARGS_COUNT = 2; // number of max possible arguments that needs to be processed
 const int NUM_OF_FILE_ARGS = 1; // number of file args used
 const int READ_BUFFER_SIZE = 512; // maybe support for max file char length?
