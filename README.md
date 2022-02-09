@@ -43,17 +43,23 @@ If the file has only one line the launch mode defaults to **open**. <br/>
 To launch the specified file run the executable of FileLauncher.
   
 ## Compile
-### Command line
-  ***debug***: 
-		`windres debug.rc debug_res.o`<br/>
-		`g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl-debug.exe debug_res.o`<br/>
+### Using terminal
+  ***debug***:
+  	<br/>
+	<br/>
+	&emsp;1.&ensp;`windres debug.rc debug_res.o`<br/>
+	&emsp;2.&ensp;`g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl-debug.exe debug_res.o`<br/>
+	<br/>
   ***release***: 
-		`windres prod.rc prod_res.o`<br/>
-		`g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl.exe prod_res.o`<br/>
+	<br/>
+	<br/>
+	&emsp;1.&ensp;`windres prod.rc prod_res.o`<br/>
+	&emsp;2.&ensp;`g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl.exe prod_res.o`<br/>
+	<br/>
   The flag mwindows is used for disabling console and municode is needed for Unicode (wWinMain) support.
 
-### Scripts  
-  Run the .cmd files to compile the source code.
+### Using scripts  
+  Run the .cmd files (***build-debug.cmd***, ***build-prod.cmd***, ***build.cmd***) to compile the source code.
 
 ## Log file
 The app should log to a file called **fl_error.txt** in case of an error (ex: invalid arguments, file doesn't exist, ...).
