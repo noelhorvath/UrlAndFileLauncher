@@ -63,3 +63,6 @@ To launch the specified file run the executable of FileLauncher.
 
 ## Log file
 The app should log to a file called **fl_error.txt** in case of an error (ex: invalid arguments, file doesn't exist, ...).
+
+### MiXTools version
+MiXTools is a modified version of the FileLauncher. The main difference is that it uses MiXTools' AppData path for reading config file and outputs error log to the application's directory.
