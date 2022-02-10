@@ -74,7 +74,7 @@ BEGIN
             VALUE "LegalCopyright", "Noel Horváth - Copyright (C) 2022"
             VALUE "OriginalFilename", "fl.exe"
             VALUE "ProductName", "FileLauncher"
-            VALUE "ProductVersion", "1.0.2"
+            VALUE "ProductVersion", "1.0.2-mxt"
         END
     END
     BLOCK "VarFileInfo"
