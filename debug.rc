@@ -69,7 +69,7 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "LULE"
             VALUE "FileDescription", "Debug version of FileLauncher Windows application."
-            VALUE "FileVersion", "1.0.2-debug"
+            VALUE "FileVersion", "1.0.2.0"
             VALUE "InternalName", "fl-debug.exe"
             VALUE "LegalCopyright", "Noel Horváth - Copyright (C) 2022"
             VALUE "OriginalFilename", "fl-debug.exe"
