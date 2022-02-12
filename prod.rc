@@ -51,8 +51,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,2,0
- PRODUCTVERSION 1,0,2,0
+ FILEVERSION 1,1,0,0
+ PRODUCTVERSION 1,1,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -68,13 +68,13 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "CompanyName", "LULE"
-            VALUE "FileDescription", "Windows application for launching/opening files."
-            VALUE "FileVersion", "1.0.2.0"
-            VALUE "InternalName", "fl.exe"
+            VALUE "FileDescription", "Windows console application for launching/opening files and URLs."
+            VALUE "FileVersion", "1.1.0.0"
+            VALUE "InternalName", "uafl.exe"
             VALUE "LegalCopyright", "Noel Horváth - Copyright (C) 2022"
-            VALUE "OriginalFilename", "fl.exe"
-            VALUE "ProductName", "FileLauncher"
-            VALUE "ProductVersion", "1.0.2"
+            VALUE "OriginalFilename", "uafl.exe"
+            VALUE "ProductName", "URLAndFileLauncher"
+            VALUE "ProductVersion", "1.1.0"
         END
     END
     BLOCK "VarFileInfo"

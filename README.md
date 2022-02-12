@@ -1,46 +1,50 @@
-# FileLauncher
-C++ Windows application for launching files. It was mainly created for my C# WinForms project called MiXTools to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant button's key press action to something useful for newer generation of Xiaomi laptops.
+# URLAndFileLauncher (UAFL)
+C++ Windows application for launching\opening any valid URL or file. It was mainly created for my C# WinForms project called MiXTools to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant button's key press action to something useful for newer generation of Xiaomi laptops.
 
 ## Features
-FileLauncher can open any file or open file in it's extension associated editor.
-It has Unicode support for Unicode paths. Windows Drag-and-Drop works on the executable (because it a single argument for a path and performs an open launch mode).
+UAFL can open any valid URL or file. It can also open files in their extension associated editor and it has support for Unicode characters. Windows Drag-and-Drop works on the executable (because it a single argument for a path and performs an open launch mode).
 
 ## Arguments
 
-FileLauncher accepts maximum of two arguments a string and another string and the order of the arguments are interchangeable.
+UAFL accepts maximum of two arguments a string and another string and the order of the arguments are interchangeable.
 It accepts arguments from the command line if any given otherwise it tries to read the first two lines of the config file if it exists.
 
 ### Launch modes 
   ( () == optional )
   
-  * **-o**, **(-)open** : Opens the file. (default when no 2nd argument is given to the app)
-  * **-r**, **(-)runas** : Launches the application as an Administrator. (only works for apps)
-  * **-e**, **(-)edit** : Launches an editor and opens the file for editing. (works if the extension has an associated app)
+  * **-o**, **(-)open** : Opens the given URL or file. (default when there is no 2nd argument)
+  * **-r**, **(-)runas** : Launches the given application (or through a shortcut) as an Administrator. (only works with executables (.exe) and shortcuts (.lnk))
+  * **-e**, **(-)edit** : Launches an editor and opens the given file for editing. (works if the extension has an associated app)
 
 ## Usage
-FileLauncher can be used with command line arguments or **fl** (without an extension) config file.
+UAFL can be used with command line arguments or **uafl** (without an extension) config file.
 
 ### Command line arguments
-  **fl**: name of the executable 
+  **uafl**: name of the executable 
   <br/>
-  **p**: path to the file
+  **p**: path to a file
   <br/>
   **m**: launch mode
   <br/>
-  - `fl "p" m`
-  - `fl "p" -m`
-  - `fl m "p"`
-  - `fl -m "p"`
+  - `uafl "p" m`
+  - `uafl "url" m`
+  - `uafl "p" -m`
+  - `uafl "url" -m`
+  - `uafl m "p"`
+  - `uafl m "url"`
+  - `uafl -m "p"`
+  - `uafl -m "url"`
   
   Using a single argument defaults to **open** launch mode
  
-  - `fl "p"`
-  - `fl p` (only works if it the path doesn't contain any space characters)
-
+  - `uafl "p"`
+  - `uafl "url"`
+  - `uafl p` (only works if it the path doesn't contain any space characters)
+  - `uafl url`
 ### Config file
-Reads the first two lines of **fl** (config file).<br/>
+Reads the first two lines of **uafl** (config file).<br/>
 If the file has only one line the launch mode defaults to **open**. <br/>
-To launch the specified file run the executable of FileLauncher.
+To launch the specified file or url run the executable of FileLauncher.
   
 ## Compile
 ### Using terminal
@@ -48,13 +52,13 @@ To launch the specified file run the executable of FileLauncher.
   	<br/>
 	<br/>
 	&emsp;1.&ensp;`windres debug.rc debug_res.o`<br/>
-	&emsp;2.&ensp;`g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl-debug.exe debug_res.o`<br/>
+	&emsp;2.&ensp;`g++ -Wall -municode -mwindows uafl_api.cpp program.cpp -o uafl-debug.exe debug_res.o`<br/>
 	<br/>
   ***release***: 
 	<br/>
 	<br/>
 	&emsp;1.&ensp;`windres prod.rc prod_res.o`<br/>
-	&emsp;2.&ensp;`g++ -Wall -o2 -municode -mwindows FileLauncher.cpp -o fl.exe prod_res.o`<br/>
+	&emsp;2.&ensp;`g++ -Wall -O2 -municode -mwindows uafl_api.cpp program.cpp -o uafl.exe prod_res.o`<br/>
 	<br/>
   The flag mwindows is used for disabling console and municode is needed for Unicode (wWinMain) support.
 
@@ -62,7 +66,7 @@ To launch the specified file run the executable of FileLauncher.
   Run the .cmd files (***build-debug.cmd***, ***build-prod.cmd***, ***build.cmd***) to compile the source code.
 
 ## Log file
-The app should log to a file called **fl_error.txt** in case of an error (ex: invalid arguments, file doesn't exist, ...).
+The app should log to a file called **uafl_error.txt** in case of an error (ex: invalid arguments, the given arugment is neither a file nor a valid, etc.).
 
 ## MiXTools version
-MiXTools is a modified version of the FileLauncher. The main difference is that it uses MiXTools' AppData path for reading config file and outputs error log to the application's directory.
+MiXTools is a modified version of the URLAndFileLauncher. The main difference is that it uses MiXTools' AppData path for reading config file and outputs error log to the application's directory.

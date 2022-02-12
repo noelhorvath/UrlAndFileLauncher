@@ -14,3 +14,10 @@
 /debug.aps
 /mxt_debug_res.o
 /mxt_prod_res.o
+/fl_error.txt
+/uafl_error.txt
+/uafl-debug.exe
+/uafl.exe
+/uafl
+/uafl_api.o
+/program.o
