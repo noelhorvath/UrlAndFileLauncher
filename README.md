@@ -24,7 +24,7 @@ UAFL can be used with command line arguments or **uafl** (without an extension) 
   <br/>
   **p**: path to a file
   <br/>
-  **m**: launch mode
+  **m**: file/URL launch mode
   <br/>
   - `uafl "p" m`
   - `uafl "url" m`
@@ -39,7 +39,7 @@ UAFL can be used with command line arguments or **uafl** (without an extension) 
  
   - `uafl "p"`
   - `uafl "url"`
-  - `uafl p` (only works if it the path doesn't contain any space characters)
+  - `uafl p` (only works if it the path doesn't contain any space character)
   - `uafl url`
 ### Config file
 Reads the first two lines of **uafl** (config file).<br/>
