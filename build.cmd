@@ -1,5 +1,5 @@
 @echo off
-echo Building FileLauncher...
+echo Building URLAndFileLauncher...
 call build-debug.cmd
 call build-prod.cmd
-echo Build finished!
+echo Done building project!
