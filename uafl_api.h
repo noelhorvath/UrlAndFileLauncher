@@ -4,6 +4,7 @@
 
 #include <string>
 #include <memory>
+#include <tchar.h>
 
 // sets the correct access value for each argument
 extern int order_args(std::unique_ptr<std::wstring[]>& args, int& argFileOrURL, int& argMode, std::string logFile);
@@ -24,6 +25,9 @@ extern int wstr_length(const wchar_t* str);
 extern bool is_valid_url(std::wstring wstr_url);
 // converts a 16 bit wstring to a 8 bit string
 extern std::string wstr_to_str(std::wstring wstr);
+// MiXTools specific functions
+// gets the full path of a file in MiXTools's AppData Roaming folder 
+extern std::wstring get_app_data_file_path(std::wstring fileName, std::wstring appName, std::wstring appVersion);
 
 namespace UAFLSettings {
 	inline constexpr auto ARGS_COUNT = 2; // number of max possible arguments that needs to be processed
@@ -32,9 +36,17 @@ namespace UAFLSettings {
 	inline constexpr auto QMARK = 34; // value of '"'
 	inline constexpr auto SPACE = 32; // value of ' '
 	inline constexpr auto& CONFIG_FILE = "uafl"; // config file
+	inline constexpr auto CONFIG_FILE_W = L"uafl";
 	inline constexpr auto& LOG_FILE = "uafl_error.txt"; // log file
+	inline constexpr auto LOG_FILE_W = L"uafl_error.txt";
 	inline constexpr auto LAUNCH_FROM_FILE = 0;
 	inline constexpr auto LAUNCH_FROM_ARGS = 1;
+	// MiXTools specific settings
+	inline constexpr auto APP_NAME = "MiXTools";
+	inline constexpr auto APP_NAME_W = L"MiXTools";
+	inline constexpr auto APP_VERSION_CODE = "1.0.0";
+	inline constexpr auto APP_VERSION_CODE_W = L"1.0.0";
+
 }
 
 namespace UAFLModes {
@@ -95,7 +107,6 @@ namespace UAFLErrorMessages {
 	inline constexpr auto& NOT_URL_NOR_FILE = "The given argument is neither a valid URL nor a file!";
 	inline constexpr auto& INVALID_ARGS = "Invalid arguments!";
 	inline constexpr auto& COULD_NOT_OPEN_CONFIG_FILE = "Couldn't open config file!";
-	inline constexpr auto& NO_CONFIG_FILE_FOUND = "Config file named \"uafl\" doesn't exist in the executable's folder";
 	inline constexpr auto& QMARKED_FILE_LAUNCH_MODE = "Usage of quotation marked launch mode (like \"open\") is not allowed!";
 	inline constexpr auto& TOO_MANY_ARGS = "Too many arguments!";
 	inline constexpr auto& LAUNCH_MODE_ARG_ERROR =
@@ -123,6 +134,8 @@ namespace UAFLErrorMessages {
 		"  -o, (-)open: Opens the given file or URL. (default)\n"
 		"  -r, (-)runas: Launches the given application (or through a shortcut) as an Administrator.\n"
 		"  -e, (-)edit: Launches an editor and opens the given file for editing.\n";
+	// MixTools specific
+	inline constexpr auto& NO_CONFIG_FILE_FOUND = "Config file doesn't exist";
 }
 
 #endif

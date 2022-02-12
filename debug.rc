@@ -68,13 +68,13 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "CompanyName", "LULE"
-            VALUE "FileDescription", "Debug version of URLAndFileLauncher Windows console application."
+            VALUE "FileDescription", "Debug version of URLAndFileLauncher for MiXTools Windows console application."
             VALUE "FileVersion", "1.1.0.0"
             VALUE "InternalName", "uafl-debug.exe"
             VALUE "LegalCopyright", "Noel Horváth - Copyright (C) 2022"
             VALUE "OriginalFilename", "uafl-debug.exe"
-            VALUE "ProductName", "URLAndFileLauncher_Debug"
-            VALUE "ProductVersion", "1.1.0-debug"
+            VALUE "ProductName", "URLAndFileLauncher_MiXTools_Debug"
+            VALUE "ProductVersion", "1.1.0-mxt_debug"
         END
     END
     BLOCK "VarFileInfo"

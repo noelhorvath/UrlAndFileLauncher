@@ -1,5 +1,5 @@
 @echo off
-echo Building URLAndFileLauncher...
+echo Building URLAndFileLauncher_MiXTools...
 call build-debug.cmd
 call build-prod.cmd
 echo Done building project!

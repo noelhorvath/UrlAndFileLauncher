@@ -10,6 +10,10 @@
 #include <memory>
 #include <regex>
 #include "uafl_api.h"
+// MiXTools
+#include <shlobj.h>
+#include <initguid.h>
+#include <knownfolders.h>
 
 using namespace std;
 using namespace UAFLErrorMessages;
@@ -102,14 +106,11 @@ int launch_uafl(int launchFrom, const wchar_t* cmdLine, const int argsLength) {
 		// open the file or URL
 		return open_url_or_file(args[argFile].c_str(), args[argMode].c_str(), NULL, SW_SHOW, LOG_FILE);
 	} else if (launchFrom == LAUNCH_FROM_FILE) {
-		filesystem::path configFile = filesystem::current_path();
-		configFile += "\\";
-		configFile += CONFIG_FILE;
-		//
-		// check if config file exists
-		//
+		// check config file
+		wstring configFile = get_app_data_file_path(CONFIG_FILE_W, APP_NAME_W, APP_VERSION_CODE_W);
 		if (!filesystem::exists(configFile)) {
-			cout << "Missing: " << configFile << endl;
+			string config_file_path = wstr_to_str(configFile);
+			cout << "Missing file: " << config_file_path << endl;
 			return log_error(LOG_FILE, NO_CONFIG_FILE_FOUND) ? NO_CONFIG_FILE_FOUND_ERROR_CODE : LOGGING_FAILED_ERROR_CODE;
 		}
 		//
@@ -118,7 +119,7 @@ int launch_uafl(int launchFrom, const wchar_t* cmdLine, const int argsLength) {
 		unique_ptr<wstring[]> args(new wstring[ARGS_COUNT]);
 		int numOfArgs = 0;
 		wifstream wif;
-		wif.open(configFile);
+		wif.open(filesystem::path(configFile));
 		if (wif.is_open()) {
 			wif.imbue(locale(locale(), new codecvt_utf8<wchar_t>)); // set UTF-8
 			wchar_t* buffer = new wchar_t[READ_BUFFER_SIZE];
@@ -127,8 +128,7 @@ int launch_uafl(int launchFrom, const wchar_t* cmdLine, const int argsLength) {
 				args[numOfArgs++] = buffer;
 			}
 			delete[] buffer;
-		}
-		else {
+		} else {
 			return log_error(LOG_FILE, COULD_NOT_OPEN_CONFIG_FILE) ? COULD_NOT_OPEN_CONFIG_FILE_ERROR_CODE : LOGGING_FAILED_ERROR_CODE;
 		}
 		wif.close();
@@ -165,7 +165,7 @@ int log_error(string file, string errorText) {
 	cout << errorText;
 	if (file.empty()) { return 0; }
 	ofstream of;
-	of.open(file);
+	of.open(filesystem::path(get_app_data_file_path(LOG_FILE_W, APP_NAME_W, APP_VERSION_CODE_W).c_str()));
 	if (!of.is_open()) { return 0; }
 	of << errorText << endl;
 	of.close();
@@ -263,4 +263,13 @@ int order_args(unique_ptr<wstring[]>& args, int& argFile, int& argMode, string l
 		return 0;
 	}
 	return 1;
+}
+
+wstring get_app_data_file_path(wstring fileName, wstring appName, wstring appVersion) {
+	wchar_t* appDataPath = nullptr;
+	SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, 0, &appDataPath);
+	wstringstream path_ss;
+	path_ss << appDataPath << "\\" << appName << "\\" << appName << "\\" << appVersion << "\\" << fileName;
+	SHFree(static_cast<void*>(appDataPath));
+	return path_ss.str();
 }

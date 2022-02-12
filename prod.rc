@@ -73,8 +73,8 @@ BEGIN
             VALUE "InternalName", "uafl.exe"
             VALUE "LegalCopyright", "Noel Horváth - Copyright (C) 2022"
             VALUE "OriginalFilename", "uafl.exe"
-            VALUE "ProductName", "URLAndFileLauncher"
-            VALUE "ProductVersion", "1.1.0"
+            VALUE "ProductName", "URLAndFileLauncher_MiXTools"
+            VALUE "ProductVersion", "1.1.0-mxt"
         END
     END
     BLOCK "VarFileInfo"
