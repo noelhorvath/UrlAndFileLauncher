@@ -1,6 +1,6 @@
 @echo off
-echo "Building URLAndFileLauncher for MiXTools..."
+echo Building URLAndFileLauncher_MiXTools...
 call build-debug.cmd
 call build-prod.cmd
-echo "Done building project!"
+echo Done building project!
 exit /b 0
