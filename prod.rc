@@ -73,7 +73,7 @@ BEGIN
             VALUE "InternalName", "uafl.exe"
             VALUE "LegalCopyright", "Noel Horváth - Copyright (C) 2022"
             VALUE "OriginalFilename", "uafl.exe"
-            VALUE "ProductName", "URLAndFileLauncher_MiXTools"
+            VALUE "ProductName", "URLAndFileLauncher for MiXTools"
             VALUE "ProductVersion", "1.1.0-mxt"
         END
     END

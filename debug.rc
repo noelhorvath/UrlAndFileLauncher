@@ -73,7 +73,7 @@ BEGIN
             VALUE "InternalName", "uafl-debug.exe"
             VALUE "LegalCopyright", "Noel Horváth - Copyright (C) 2022"
             VALUE "OriginalFilename", "uafl-debug.exe"
-            VALUE "ProductName", "URLAndFileLauncher_MiXTools_Debug"
+            VALUE "ProductName", "URLAndFileLauncher for MiXTools debug"
             VALUE "ProductVersion", "1.1.0-mxt_debug"
         END
     END
