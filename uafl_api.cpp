@@ -142,7 +142,7 @@ bool is_valid_url(wstring url) {
 	return regex_match(url, url_regex);
 }
 
-int order_args(vector<wstring> args, int& argFile, int& argMode) {
+int order_args(vector<wstring>& args, int& argFile, int& argMode) {
 	if (args.size() != ARGS_COUNT) { return 3; }
 	if (filesystem::exists(args[0]) || is_valid_url(args[0])) {
 		argFile = 0;
