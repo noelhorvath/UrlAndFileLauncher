@@ -5,7 +5,6 @@
 #include <fstream>
 #include <filesystem>
 #include <codecvt>
-#include <memory>
 #include <regex>
 #include <vector>
 #include "uafl_api.h"

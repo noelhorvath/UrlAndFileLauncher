@@ -3,7 +3,6 @@
 #define _UAFL_H_API
 
 #include <string>
-#include <memory>
 #include <vector>
 
 // sets the correct access value for each argument
