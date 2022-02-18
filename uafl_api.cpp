@@ -64,7 +64,7 @@ int launch_uafl(int launchFrom, wstring cmdLine) {
 		} else if (orderRes == 2) {
 			return log_error(LOG_FILE, INVALID_LAUNCH_MODE) ? INVALID_LAUNCH_MODE_ERROR_CODE : LOGGING_FAILED_ERROR_CODE;
 		}
-		// open the file or 
+		// open the file or URL
 		return open_url_or_file(args[argFile].c_str(), args[argMode].c_str(), wstring().c_str(), SW_SHOW, LOG_FILE);
 	} else {
 		return log_error(LOG_FILE, TOO_MANY_ARGS_ERROR) ? TOO_MANY_ARGS_ERROR_CODE : LOGGING_FAILED_ERROR_CODE;
@@ -140,7 +140,7 @@ bool is_valid_url(wstring url) {
 	return regex_match(url, url_regex);
 }
 
-int order_args(vector<wstring>& args, int& argFile, int& argMode) {
+int order_args(vector<wstring> args, int& argFile, int& argMode) {
 	if (args.size() != ARGS_COUNT) { return 3; }
 	if (filesystem::exists(args[0]) || is_valid_url(args[0])) {
 		argFile = 0;

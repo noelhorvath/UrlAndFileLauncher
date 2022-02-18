@@ -6,7 +6,7 @@
 #include <vector>
 
 // sets the correct access value for each argument
-extern int order_args(std::vector<std::wstring>& args, int& argFile, int& argMode);
+extern int order_args(std::vector<std::wstring> args, int& argFile, int& argMode);
 // checks wether the given mode is valid
 extern bool is_mode_valid(std::wstring& mode);
 // executes shellexecute on the given arg, which can be a path to a file or a URL, with the given launch mode
