@@ -1,5 +1,6 @@
 #include <windows.h>
 #include "uafl_api.h"
+#include <iostream>
 
 using namespace std;
 using namespace UAFLSettings;
@@ -23,17 +24,16 @@ using namespace UAFLSettings;
 *
 */
 
-// win app entry point
 // compile with -mwindows to completely hide terminal
 // -municode needed to compile wWinMain
+
+// win app entry point
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd) {
-	// terminate non-null terminated cmd arguments
-	lpCmdLine += '\0';
-	const int argsLength = wstr_length(lpCmdLine);
-	if (argsLength == 0) {
-		return launch_uafl(LAUNCH_FROM_FILE, nullptr, argsLength);
+	wstring cmdLine = wstring(lpCmdLine);
+	if (cmdLine.empty()) { // same as size == 0
+		return launch_uafl(LAUNCH_FROM_FILE, wstring()); // pass a "null" wstring_view
 	} else {
-		return launch_uafl(LAUNCH_FROM_ARGS, lpCmdLine, argsLength);
+		return launch_uafl(LAUNCH_FROM_ARGS, cmdLine);
 	}
 	return 0;
 }
