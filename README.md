@@ -67,4 +67,4 @@ To launch the specified file or url run the executable of FileLauncher.
 The app should log to a file called **uafl_error.txt** in case of an error (ex: invalid arguments, the given arugment is neither a file nor a valid, etc.).
 
 ## MiXTools version
-MiXTools is a modified version of the URLAndFileLauncher. The main difference is that it uses MiXTools' AppData path for reading config file and outputs error log to the application's directory.
+MiXTools is a modified version of the URLAndFileLauncher. The main difference is that it uses MiXTools' AppData path for reading the config file and creating an error log file.
