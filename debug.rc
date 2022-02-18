@@ -51,8 +51,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,1,0,0
- PRODUCTVERSION 1,1,0,0
+ FILEVERSION 1,1,1,0
+ PRODUCTVERSION 1,1,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -69,12 +69,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "LULE"
             VALUE "FileDescription", "Debug version of URLAndFileLauncher Windows console application."
-            VALUE "FileVersion", "1.1.0.0"
+            VALUE "FileVersion", "1.1.1.0"
             VALUE "InternalName", "uafl-debug.exe"
             VALUE "LegalCopyright", "Noel Horváth - Copyright (C) 2022"
             VALUE "OriginalFilename", "uafl-debug.exe"
             VALUE "ProductName", "URLAndFileLauncher debug"
-            VALUE "ProductVersion", "1.1.0-debug"
+            VALUE "ProductVersion", "1.1.1-debug"
         END
     END
     BLOCK "VarFileInfo"
