@@ -22,25 +22,23 @@ UAFL can be used with command line arguments or **uafl** (without an extension) 
 ### Command line arguments
   **uafl**: name of the executable 
   <br/>
-  **p**: path to a file
+  **url_or_path**: a valid URL or a file's path
   <br/>
   **m**: file/URL launch mode
   <br/>
-  - `uafl "p" m`
-  - `uafl "url" m`
-  - `uafl "p" -m`
-  - `uafl "url" -m`
-  - `uafl m "p"`
-  - `uafl m "url"`
-  - `uafl -m "p"`
-  - `uafl -m "url"`
+  - `uafl "url_or_path" m`
+  - `uafl "url_or_path" "m"`
+  - `uafl "url_or_path" -m`
+  - `uafl "url_or_path" "-m"`
+  - `uafl m "url_or_path"`
+  - `uafl "m" "url_or_path"`
+  - `uafl -m "url_or_path"`
+  - `uafl "-m" "url_or_path"`
   
   Using a single argument defaults to **open** launch mode
  
-  - `uafl "p"`
-  - `uafl "url"`
-  - `uafl p` (only works if it the path doesn't contain any space character)
-  - `uafl url`
+  - `uafl "url_or_path"`
+  - `uafl url_or_path` (only works if it the path or URL doesn't contain any space character)
 ### Config file
 Reads the first two lines of **uafl** (config file).<br/>
 If the file has only one line the launch mode defaults to **open**. <br/>
@@ -52,13 +50,13 @@ To launch the specified file or url run the executable of FileLauncher.
   	<br/>
 	<br/>
 	&emsp;1.&ensp;`windres debug.rc debug_res.o`<br/>
-	&emsp;2.&ensp;`g++ -Wall -municode -mwindows uafl_api.cpp program.cpp -o uafl-debug.exe debug_res.o`<br/>
+	&emsp;2.&ensp;`g++ -Wall -municode -std=c++23 program.cpp uafl_api.cpp -o uafl-debug.exe debug_res.o`<br/>
 	<br/>
   ***release***: 
 	<br/>
 	<br/>
 	&emsp;1.&ensp;`windres prod.rc prod_res.o`<br/>
-	&emsp;2.&ensp;`g++ -Wall -O2 -municode -mwindows uafl_api.cpp program.cpp -o uafl.exe prod_res.o`<br/>
+	&emsp;2.&ensp;`g++ -Wall -O2 -municode -mwindows -std=c++23 program.cpp uafl_api.cpp -o uafl.exe prod_res.o`<br/>
 	<br/>
   The flag mwindows is used for disabling console and municode is needed for Unicode (wWinMain) support.
 
