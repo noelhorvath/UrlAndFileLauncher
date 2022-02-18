@@ -1,6 +1,5 @@
 #include <windows.h>
 #include "uafl_api.h"
-#include <iostream>
 
 using namespace std;
 using namespace UAFLSettings;
@@ -12,12 +11,12 @@ using namespace UAFLSettings;
 *		debug:
 * 
 *			windres debug.rc debug_res.o
-*			g++ -Wall -municode -mwindows uafl_api.cpp program.cpp -o uafl-debug.exe debug_res.o
+*			g++ -Wall -municode -std=c++23 uafl_api.cpp program.cpp -o uafl-debug.exe debug_res.o
 * 
 *		production:
 *			
 *			windres prod.rc prod_res.o
-*			g++ -Wall -O2 -municode -mwindows uafl_api.cpp program.cpp -o uafl.exe prod_res.o
+*			g++ -Wall -O2 -municode -mwindows -std=c++23 uafl_api.cpp program.cpp -o uafl.exe prod_res.o
 *	
 * 
 * or use the .cmd files for compiling.
