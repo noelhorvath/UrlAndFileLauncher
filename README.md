@@ -69,4 +69,4 @@ Run the .cmd files (***build-debug.cmd***, ***build-prod.cmd***, ***build.cmd***
 The app will output logs to **uafl_error.txt** in case of an error.
 
 ## MiXTools version
-MiXTools (mxt) is a modified version of URLAndFileLauncher. The main difference is that it uses different file paths for input and (error) output.
+MiXTools (mxt) is a modified version of URLAndFileLauncher. The main difference is that it uses MiXTools specific file paths for input and (error) output.
