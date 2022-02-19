@@ -1,5 +1,5 @@
 # URLAndFileLauncher (UAFL)
-C++ Windows application for launching\opening any valid URL or file. It was mainly created for my C# WinForms project called MiXTools to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant button's key press action to something useful for newer generation of Xiaomi laptops.
+C++ Windows application for launching/opening any valid URL or file. It was mainly created for my C# WinForms project called MiXTools to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant button's key press action to something useful for newer generation of Xiaomi laptops.
 
 ## Features
 UAFL can open any valid URL or file. It can also open files in their extension associated editor and it has support for Unicode characters. Windows Drag-and-Drop works on the executable (because the dragged file's path will be passed as an argument).
