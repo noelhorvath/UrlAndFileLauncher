@@ -2,22 +2,22 @@
 C++ Windows application for launching\opening any valid URL or file. It was mainly created for my C# WinForms project called MiXTools to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant button's key press action to something useful for newer generation of Xiaomi laptops.
 
 ## Features
-UAFL can open any valid URL or file. It can also open files in their extension associated editor and it has support for Unicode characters. Windows Drag-and-Drop works on the executable (because it a single argument for a path and performs an open launch mode).
+UAFL can open any valid URL or file. It can also open files in their extension associated editor and it has support for Unicode characters. Windows Drag-and-Drop works on the executable (because the dragged file's path will be passed as an argument).
 
 ## Arguments
 
-UAFL accepts maximum of two arguments a string and another string and the order of the arguments are interchangeable.
-It accepts arguments from the command line if any given otherwise it tries to read the first two lines of the config file if it exists.
+UAFL accepts maximum of two arguments and the order of the arguments are interchangeable.
+It accepts input from the command line if any was given otherwise it tries to read the first two lines of the config file if it exists.
 
 ### Launch modes 
   ( () == optional )
   
-  * **-o**, **(-)open** : Opens the given URL or file. (default when there is no 2nd argument)
+  * **-o**, **(-)open** : Opens the given URL or file. (default when there is only a single argument)
   * **-r**, **(-)runas** : Launches the given application (or through a shortcut) as an Administrator. (only works with executables (.exe) and shortcuts (.lnk))
   * **-e**, **(-)edit** : Launches an editor and opens the given file for editing. (works if the extension has an associated app)
 
 ## Usage
-UAFL can be used with command line arguments or **uafl** (without an extension) config file.
+UAFL can be used with command line or **uafl** (without an extension) config file.
 
 ### Command line arguments
   **uafl**: name of the executable 
@@ -39,13 +39,15 @@ UAFL can be used with command line arguments or **uafl** (without an extension) 
  
   - `uafl "url_or_path"`
   - `uafl url_or_path` (only works if it the path or URL doesn't contain any space character)
+
 ### Config file
 Reads the first two lines of **uafl** (config file).<br/>
 If the file has only one line the launch mode defaults to **open**. <br/>
-To launch the specified file or url run the executable of FileLauncher.
+To launch the specified file or url run the executable of UrlAndFileLauncher.
   
 ## Compile
-### Using terminal
+
+### Terminal
   ***debug***:
   	<br/>
 	<br/>
@@ -60,11 +62,11 @@ To launch the specified file or url run the executable of FileLauncher.
 	<br/>
   The flag mwindows is used for disabling console and municode is needed for Unicode (wWinMain) support.
 
-### Using scripts  
-  Run the .cmd files (***build-debug.cmd***, ***build-prod.cmd***, ***build.cmd***) to compile the source code.
+### Build scripts  
+Run the .cmd files (***build-debug.cmd***, ***build-prod.cmd***, ***build.cmd***) to compile the source code.
 
 ## Log file
-The app should log to a file called **uafl_error.txt** in case of an error (ex: invalid arguments, the given arugment is neither a file nor a valid, etc.).
+The app will output logs to **uafl_error.txt** in case of an error.
 
 ## MiXTools version
-MiXTools is a modified version of the URLAndFileLauncher. The main difference is that it uses MiXTools' AppData path for reading the config file and creating an error log file.
+MiXTools (mxt) is a modified version of URLAndFileLauncher. The main difference is that it uses different file paths for input and (error) output.
