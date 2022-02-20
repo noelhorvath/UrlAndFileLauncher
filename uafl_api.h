@@ -100,7 +100,7 @@ namespace UAFLErrorMessages {
 	inline constexpr std::string_view TOO_MANY_ARGS_ERROR = "Too many arguments!";
 	inline constexpr std::string_view INVALID_LAUNCH_MODE = "Invalid launch mode!";
 	inline constexpr std::string_view COULD_NOT_OPEN_CONFIG_FILE = "Couldn't open config file!";
-	inline constexpr std::string_view NO_CONFIG_FILE_FOUND = "Config file named \"uafl\" doesn't exist in the executable's folder";
+	inline constexpr std::string_view NO_CONFIG_FILE_FOUND = "Config file named \"uafl\" doesn't exist in MiXTools' AppData\\Roaming folder";
 }
 
 #endif
