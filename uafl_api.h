@@ -7,7 +7,7 @@
 
 // sets the correct access value for each argument
 extern int order_args(std::vector<std::wstring>& args, int& argFile, int& argMode);
-// checks wether the given mode is valid
+// checks if the wstring mode is valid
 extern bool is_mode_valid(std::wstring& mode);
 // executes shellexecute on the given arg, which can be a path to a file or a URL, with the given launch mode
 extern int open_url_or_file(const wchar_t* arg, const wchar_t* mode, const wchar_t* params, int showCmd, const std::string_view logFile);
