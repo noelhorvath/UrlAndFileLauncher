@@ -41,7 +41,7 @@ UAFL can be used with command line or **uafl** (without an extension) config fil
   Using a single argument defaults to **open** launch mode
  
   - `uafl "url_or_path"`
-  - `uafl url_or_path` (only works if it the path or URL doesn't contain any space character)
+  - `uafl url_or_path` (only works if the path or URL doesn't contain space characters)
 
 ### Config file
 Reads the first two lines of **uafl** (config file).<br/>
