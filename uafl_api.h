@@ -18,7 +18,7 @@ extern int log_error(std::string_view file, std::string_view errorText);
 extern int launch_uafl(int launchFrom, std::wstring cmdLine);
 // checks if the given wstring is a valid url
 extern bool is_valid_url(std::wstring url);
-// splits a wstring_view by the spparator char and returns the result as an unique_ptr<wstring_view[]>
+// splits a wstring_view by the separator char and returns the result as an unique_ptr<wstring_view[]>
 extern std::vector<std::wstring> split_str(std::wstring str, wchar_t separator, bool checkBetweenQMarks);
 
 namespace UAFLSettings {
