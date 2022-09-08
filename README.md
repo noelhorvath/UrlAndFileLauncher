@@ -1,4 +1,7 @@
-# URLAndFileLauncher (UAFL)
+# MiXLauncher (formerly known as URLAndFileLauncher)
+
+# --- Currently the project is being rewritten in C# ---
+
 C++ Windows application for launching/opening any valid URL or file. It was mainly created for my C# WinForms project called MiXTools (soon ™) to circumvent reverse engeneering Xiaomi's Mi OSD Utility software in order to change the dedicated assistant key's action to something useful for newer generation of Xiaomi laptops.
 
 ## Features
